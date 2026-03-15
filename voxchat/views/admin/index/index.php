@@ -56,7 +56,7 @@ $pagination = $this->get('pagination');
                             </td>
                             <td><?= $this->escape($msg->getMessage()) ?></td>
                             <td class="text-center">
-                                <a href="<?= $this->getUrl(['action' => 'delete', 'id' => $msg->getId()]) ?>"
+                                <a href="<?= $this->getUrl(['action' => 'delete', 'id' => $msg->getId()], null, true) ?>"
                                    class="btn btn-danger btn-xs"
                                    data-confirm="<?= $this->getTrans('confirmDelete') ?>">
                                     <i class="fa-solid fa-trash-can"></i>

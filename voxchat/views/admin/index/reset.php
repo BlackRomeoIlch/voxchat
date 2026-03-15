@@ -9,7 +9,7 @@
     <?= $this->getTrans('resetWarning') ?>
 </div>
 
-<a href="<?= $this->getUrl(['action' => 'reset']) ?>"
+<a href="<?= $this->getUrl(['action' => 'reset'], null, true) ?>"
    class="btn btn-danger"
    data-confirm="<?= $this->getTrans('confirmReset') ?>">
     <i class="fa-solid fa-trash-can"></i> <?= $this->getTrans('resetAll') ?>
