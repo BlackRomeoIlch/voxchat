@@ -28,10 +28,13 @@ class Index extends \Ilch\Controller\Frontend
         if ($user !== null && !empty($user->getGroups())) {
             $writeAccess = array_map(fn($g) => $g->getId(), $user->getGroups());
         } else {
-            $writeAccess = [1];
+            $writeAccess = [3]; // Gast (Ilch Gruppe 3)
         }
 
+        $guestView = ($config->get('voxchat_guest_view') !== '0');
+
         $this->getView()
+            ->set('guestView',   $guestView)
             ->set('messages',    $messages)
             ->set('maxId',       $maxId)
             ->set('writeAccess', $writeAccess)
@@ -40,7 +43,7 @@ class Index extends \Ilch\Controller\Frontend
             ->set('loggedIn',    $user !== null)
             ->set('channel',     $config->get('voxchat_channel')         ?: '#general')
             ->set('maxlength',   (int)($config->get('voxchat_chat_maxlength')  ?: 300))
-            ->set('writeaccess', $config->get('voxchat_chat_writeaccess') ?: '1,2')
+            ->set('writeaccess', $config->get('voxchat_chat_writeaccess') ?: '2')
             ->set('refresh',     (int)($config->get('voxchat_chat_refresh')    ?: 30))
             ->set('height',      (int)($config->get('voxchat_height')          ?: 500))
             ->set('style', [
@@ -112,10 +115,10 @@ class Index extends \Ilch\Controller\Frontend
         if ($user !== null && !empty($user->getGroups())) {
             $writeAccess = array_map(fn($g) => $g->getId(), $user->getGroups());
         } else {
-            $writeAccess = [1];
+            $writeAccess = [3]; // Gast (Ilch Gruppe 3)
         }
 
-        $allowedGroups = explode(',', $config->get('voxchat_chat_writeaccess') ?: '1,2');
+        $allowedGroups = explode(',', $config->get('voxchat_chat_writeaccess') ?: '2');
         if (!is_in_array($writeAccess, $allowedGroups)) {
             $result['error'] = $this->getTranslator()->trans('noWriteAccess');
             $this->getView()->set('json', $result);

@@ -21,7 +21,9 @@ return [
     'channel'               => 'Channel Name',
     'channelDisplayHint'    => 'Display only (shown in chat header), e.g. my-channel',
 
-    // Write access
+    // Write access / visibility
+    'guestView'             => 'Guests may see the chat',
+    'guestViewHint'         => 'If disabled, the chat is invisible to non-logged-in visitors.',
     'writeAccess'           => 'Writing allowed for',
     'writeAccessHint'       => 'Select at least one group. Group 1 = Guests.',
 

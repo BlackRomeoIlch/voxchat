@@ -25,10 +25,13 @@ class Voxchat extends \Ilch\Box
         if ($user !== null && !empty($user->getGroups())) {
             $writeAccess = array_map(fn($g) => $g->getId(), $user->getGroups());
         } else {
-            $writeAccess = [1]; // Gast
+            $writeAccess = [3]; // Gast (Ilch Gruppe 3)
         }
 
+        $guestView = ($config->get('voxchat_guest_view') !== '0');
+
         $this->getView()
+            ->set('guestView',    $guestView)
             ->set('messages',     $messages)
             ->set('maxId',        $maxId)
             ->set('writeAccess',  $writeAccess)
@@ -37,7 +40,7 @@ class Voxchat extends \Ilch\Box
             ->set('loggedIn',     $user !== null)
             ->set('channel',      $config->get('voxchat_channel')          ?: '#general')
             ->set('maxlength',    (int)($config->get('voxchat_chat_maxlength')   ?: 300))
-            ->set('writeaccess',  $config->get('voxchat_chat_writeaccess')  ?: '1,2')
+            ->set('writeaccess',  $config->get('voxchat_chat_writeaccess')  ?: '2')
             ->set('refresh',      (int)($config->get('voxchat_chat_refresh')     ?: 30))
             ->set('height',       (int)($config->get('voxchat_height')           ?: 400))
             ->set('uniqid',       substr(md5(microtime(true)), 0, 8))

@@ -4,15 +4,22 @@
 // Die Full-Page-View nutzt dieselbe Chat-Box-View mit größerer Höhe.
 // Wir rendern sie direkt über include der Box-View-Logik.
 
+$loggedIn    = (bool)$this->get('loggedIn');
+$guestView   = (bool)$this->get('guestView');
+
+if (!$guestView && !$loggedIn) {
+    echo '<p class="text-muted">' . $this->getTrans('loginToChat') . '</p>';
+    return;
+}
+
 $messages    = $this->get('messages')    ?? [];
 $maxId       = (int)$this->get('maxId');
 $writeAccess = $this->get('writeAccess');
-$writeaccess = $this->get('writeaccess') ?? '1,2';
+$writeaccess = $this->get('writeaccess') ?? '2';
 $channel     = $this->get('channel')     ?? '#general';
 $maxlength   = (int)($this->get('maxlength') ?? 300);
 $refresh     = (int)($this->get('refresh')   ?? 30);
 $height      = (int)($this->get('height')    ?? 500);
-$loggedIn    = (bool)$this->get('loggedIn');
 $userName    = $this->get('userName') ?? '';
 $style       = $this->get('style') ?? [];
 

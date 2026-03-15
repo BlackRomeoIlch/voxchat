@@ -3,15 +3,22 @@
 /** @var \Ilch\View $this */
 
 $uid          = $this->get('uniqid');
+$loggedIn     = (bool)$this->get('loggedIn');
+$guestView    = (bool)$this->get('guestView');
+
+// Gäste dürfen den Chat nicht sehen → nichts ausgeben
+if (!$guestView && !$loggedIn) {
+    return;
+}
+
 $messages     = $this->get('messages')    ?? [];
 $maxId        = (int)$this->get('maxId');
 $writeAccess  = $this->get('writeAccess');
-$writeaccess  = $this->get('writeaccess') ?? '1,2';
+$writeaccess  = $this->get('writeaccess') ?? '2';
 $channel      = $this->get('channel')     ?? '#general';
 $maxlength    = (int)($this->get('maxlength') ?? 300);
 $refresh      = (int)($this->get('refresh')   ?? 30);
 $height       = (int)($this->get('height')    ?? 400);
-$loggedIn     = (bool)$this->get('loggedIn');
 $style = $this->get('style') ?? [];
 
 // Hex+Opacity → rgba() Helper

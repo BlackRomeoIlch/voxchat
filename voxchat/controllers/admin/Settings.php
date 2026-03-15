@@ -54,6 +54,7 @@ class Settings extends \Ilch\Controller\Admin
 
             if ($validation->isValid()) {
                 $this->getConfig()
+                    ->set('voxchat_guest_view',        (int)($this->getRequest()->getPost('guest_view') == '1'))
                     ->set('voxchat_channel',          trim($this->getRequest()->getPost('channel')))
                     ->set('voxchat_chat_limit',        (int)$this->getRequest()->getPost('chat_limit'))
                     ->set('voxchat_chat_maxlength',    (int)$this->getRequest()->getPost('chat_maxlen'))
@@ -89,6 +90,7 @@ class Settings extends \Ilch\Controller\Admin
         $this->getView()
             ->set('groups',        $groups)
             ->set('writeAccesses', $writeAccesses)
+            ->set('guest_view',    $this->getConfig()->get('voxchat_guest_view') ?? '1')
             ->set('channel',       $this->getConfig()->get('voxchat_channel'))
             ->set('chat_limit',    $this->getConfig()->get('voxchat_chat_limit'))
             ->set('chat_maxlen',   $this->getConfig()->get('voxchat_chat_maxlength'))

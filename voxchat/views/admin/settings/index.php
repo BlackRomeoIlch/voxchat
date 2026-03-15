@@ -37,6 +37,19 @@
             <i class="fa-solid fa-users me-2"></i><?= $this->getTrans('writeAccessSection') ?>
         </div>
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-xl-3 col-form-label"><?= $this->getTrans('guestView') ?></div>
+                <div class="col-xl-4">
+                    <div class="flipswitch">
+                        <input type="radio" class="flipswitch-input" id="guest_view-on" name="guest_view" value="1" <?= ($this->get('guest_view') != '0') ? 'checked="checked"' : '' ?> />
+                        <label for="guest_view-on" class="flipswitch-label flipswitch-label-on"><?= $this->getTrans('on') ?></label>
+                        <input type="radio" class="flipswitch-input" id="guest_view-off" name="guest_view" value="0" <?= ($this->get('guest_view') == '0') ? 'checked="checked"' : '' ?> />
+                        <label for="guest_view-off" class="flipswitch-label flipswitch-label-off"><?= $this->getTrans('off') ?></label>
+                        <span class="flipswitch-selection"></span>
+                    </div>
+                    <small class="d-block mt-1 text-muted"><?= $this->getTrans('guestViewHint') ?></small>
+                </div>
+            </div>
             <div class="row mb-0">
                 <label class="col-xl-3 col-form-label"><?= $this->getTrans('writeAccess') ?></label>
                 <div class="col-xl-9 col-form-label">

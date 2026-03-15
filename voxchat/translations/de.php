@@ -21,7 +21,9 @@ return [
     'channel'               => 'Channel-Name',
     'channelDisplayHint'    => 'Nur zur Anzeige im Chat-Header, z. B. mein-kanal',
 
-    // Schreibrechte
+    // Schreibrechte / Sichtbarkeit
+    'guestView'             => 'Gäste dürfen Chat sehen',
+    'guestViewHint'         => 'Wenn deaktiviert, ist der Chat für nicht eingeloggte Besucher unsichtbar.',
     'writeAccess'           => 'Schreiben erlaubt für',
     'writeAccessHint'       => 'Mindestens eine Gruppe auswählen. Gruppe 1 = Gäste.',
 
